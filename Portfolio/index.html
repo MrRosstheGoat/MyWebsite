@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gareth Chitate — Portfolio</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============================= DESKTOP ============================= -->
+<div id="desktop">
+  <div id="wallpaper">
+    <div class="wp-glow"></div>
+    <div class="wp-beam"></div>
+    <svg class="wp-swoosh" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="sw1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"  stop-color="#7fd7ff" stop-opacity=".00"/>
+          <stop offset="45%" stop-color="#9fe4ff" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#2b7fc4" stop-opacity=".00"/>
+        </linearGradient>
+        <linearGradient id="sw2" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%"  stop-color="#0d4d86" stop-opacity=".0"/>
+          <stop offset="50%" stop-color="#6fc9f5" stop-opacity=".35"/>
+          <stop offset="100%" stop-color="#0d4d86" stop-opacity=".0"/>
+        </linearGradient>
+        <filter id="blr"><feGaussianBlur stdDeviation="18"/></filter>
+      </defs>
+      <path d="M-100,760 C280,700 420,300 780,300 C1140,300 1300,690 1750,600 L1750,900 L-100,900 Z"
+            fill="url(#sw1)" filter="url(#blr)"/>
+      <path d="M-100,840 C300,820 520,470 900,470 C1280,470 1420,780 1750,720 L1750,900 L-100,900 Z"
+            fill="url(#sw2)" filter="url(#blr)"/>
+      <path d="M-100,700 C300,660 500,240 820,250" stroke="#bfeaff" stroke-opacity=".35"
+            stroke-width="2" fill="none" filter="url(#blr)"/>
+    </svg>
+    <div class="wp-vignette"></div>
+    <div class="wp-brand">
+      <div class="wp-logo">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="wp-brandtext">
+        <div class="wp-w7">Windows<span>7</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- desktop icons injected by JS -->
+  <div id="icon-layer"></div>
+
+  <!-- rubber-band selection -->
+  <div id="rubber"></div>
+
+  <!-- windows appended here -->
+  <div id="window-layer"></div>
+</div>
+
+<!-- ============================= START MENU ============================= -->
+<div id="start-menu" class="hidden">
+  <div class="sm-userpic" id="sm-userpic"></div>
+  <div class="sm-body">
+    <div class="sm-left">
+      <div class="sm-programs" id="sm-programs"></div>
+      <div class="sm-allprograms" id="sm-allprograms">
+        <span class="sm-ap-arrow">▶</span> All Programs
+      </div>
+      <div class="sm-searchwrap">
+        <input type="text" id="sm-search" placeholder="Search programs and files" autocomplete="off">
+        <span class="sm-search-ico"></span>
+      </div>
+    </div>
+    <div class="sm-right">
+      <div class="sm-username" id="sm-username">Gareth</div>
+      <div class="sm-rlist" id="sm-rlist"></div>
+      <div class="sm-shutdown">
+        <button id="sm-shutdown-btn">Shut down</button>
+        <button id="sm-shutdown-arrow">▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= TASKBAR ============================= -->
+<div id="taskbar">
+  <button id="start-orb" title="Start">
+    <span class="orb-flag">
+      <i></i><i></i><i></i><i></i>
+    </span>
+  </button>
+  <div id="taskbar-items"></div>
+  <div id="tray">
+    <div class="tray-divider"></div>
+    <div class="tray-icons">
+      <div class="tray-ico tray-arrow" title="Show hidden icons">▲</div>
+      <div class="tray-ico tray-net" title="Network — Internet access"></div>
+      <div class="tray-ico tray-vol" title="Volume"></div>
+      <div class="tray-ico tray-flag" title="Action Center"></div>
+    </div>
+    <div id="clock">
+      <div id="clock-time">00:00</div>
+      <div id="clock-date">01/01/2026</div>
+    </div>
+    <div id="show-desktop" title="Show desktop"></div>
+  </div>
+</div>
+
+<!-- ============================= CONTEXT MENU ============================= -->
+<div id="context-menu" class="hidden"></div>
+
+<!-- ============================= BALLOON TIP ============================= -->
+<div id="balloon" class="hidden">
+  <div class="balloon-head"><span class="balloon-ico"></span><b>Welcome</b><span class="balloon-x">✕</span></div>
+  <div class="balloon-body">Double-click the desktop icons to explore my portfolio. Right-click the desktop for more.</div>
+  <div class="balloon-tail"></div>
+</div>
+
+
+<!-- ==================================================================== -->
+<!-- ======================= WINDOW CONTENT TEMPLATES ==================== -->
+<!-- ==================================================================== -->
+
+<!-- ---------- ABOUT ME (Computer > Properties style) ---------- -->
+<template id="tpl-about">
+  <div class="cp-page">
+    <div class="cp-addressbar">
+      <div class="cp-back">◀</div><div class="cp-fwd">▶</div>
+      <div class="cp-crumbs"><span>Control Panel</span> ▸ <span>System and Security</span> ▸ <b>System</b></div>
+      <div class="cp-searchbox"><input placeholder="Search Control Panel" type="text"></div>
+    </div>
+    <div class="cp-split">
+      <div class="cp-nav">
+        <div class="cp-nav-title">Control Panel Home</div>
+        <a class="cp-link">Device Manager</a>
+        <a class="cp-link">Remote settings</a>
+        <a class="cp-link">System protection</a>
+        <a class="cp-link">Advanced system settings</a>
+        <div class="cp-nav-sep"></div>
+        <div class="cp-nav-title">See also</div>
+        <a class="cp-link">Action Center</a>
+        <a class="cp-link">Windows Update</a>
+      </div>
+      <div class="cp-main">
+        <h1 class="cp-h1">View basic information about your developer</h1>
+
+        <h2 class="cp-h2">Windows edition</h2>
+        <div class="cp-grid">
+          <div class="cp-k">Name:</div><div class="cp-v">Gareth Chitate</div>
+          <div class="cp-k">Edition:</div><div class="cp-v">Software Developer — Full Stack</div>
+          <div class="cp-k">Location:</div><div class="cp-v">Available for remote &amp; hybrid roles</div>
+          <div class="cp-k">Status:</div><div class="cp-v" style="color:#0a640a"><b>Open to opportunities</b></div>
+        </div>
+
+        <h2 class="cp-h2">System</h2>
+        <div class="cp-sys">
+          <div class="cp-sys-logo">
+            <div class="cp-avatar"></div>
+          </div>
+          <div class="cp-grid cp-grid-tight">
+            <div class="cp-k">Processor:</div><div class="cp-v">JavaScript / TypeScript / Python</div>
+            <div class="cp-k">Installed memory:</div><div class="cp-v">4+ years of hands-on experience</div>
+            <div class="cp-k">System type:</div><div class="cp-v">Web · APIs · Automation</div>
+            <div class="cp-k">Pen and Touch:</div><div class="cp-v">Clean code, tests, and good docs available</div>
+          </div>
+        </div>
+
+        <h2 class="cp-h2">About</h2>
+        <p class="cp-p">
+          I'm a software developer who likes building things that feel fast and behave predictably.
+          Most of my work sits between the browser and the database: React front ends, Node and Python
+          services behind them, and whatever glue is needed to keep the two honest.
+        </p>
+        <p class="cp-p">
+          I care a lot about the boring parts — readable code, sensible errors, tests that actually catch
+          things, and interfaces that don't make people think. This portfolio is a small demonstration of
+          that: every window, animation and control here is hand-written HTML, CSS and vanilla JavaScript.
+          No frameworks, no images, no dependencies.
+        </p>
+
+        <h2 class="cp-h2">Computer name, domain, and workgroup settings</h2>
+        <div class="cp-grid">
+          <div class="cp-k">Email:</div><div class="cp-v"><a href="mailto:chitategareth2@gmail.com">chitategareth2@gmail.com</a></div>
+          <div class="cp-k">GitHub:</div><div class="cp-v"><a href="#" data-noop>github.com/garethchitate</a></div>
+          <div class="cp-k">LinkedIn:</div><div class="cp-v"><a href="#" data-noop>linkedin.com/in/garethchitate</a></div>
+        </div>
+
+        <div class="cp-activation">
+          <div class="cp-act-title">Windows activation</div>
+          <div class="cp-act-body">Developer is activated and ready to work. <a href="#" data-open="contact">Get in touch</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- ---------- PROJECTS (Explorer) ---------- -->
+<template id="tpl-projects">
+  <div class="ex-page">
+    <div class="ex-addressbar">
+      <div class="ex-nav-btns"><button class="ex-back">◀</button><button class="ex-fwd">▶</button></div>
+      <div class="ex-crumbbar">
+        <span class="ex-crumb-ico"></span>
+        <span>Libraries</span><span class="ex-sep">▸</span><span>Projects</span><span class="ex-sep">▸</span>
+      </div>
+      <div class="ex-searchbox"><input type="text" placeholder="Search Projects" id="proj-search"></div>
+    </div>
+    <div class="ex-toolbar">
+      <span class="ex-tb-item">Organize <b>▾</b></span>
+      <span class="ex-tb-sep"></span>
+      <span class="ex-tb-item">Include in library <b>▾</b></span>
+      <span class="ex-tb-item">Share with <b>▾</b></span>
+      <span class="ex-tb-item">Burn</span>
+      <span class="ex-tb-item">New folder</span>
+      <span class="ex-tb-right"><span class="ex-view-ico"></span><span class="ex-help">?</span></span>
+    </div>
+    <div class="ex-split">
+      <div class="ex-nav">
+        <div class="ex-tree">
+          <div class="ex-tree-head"><span class="tri">▾</span><span class="ex-ico ico-fav"></span>Favorites</div>
+          <div class="ex-tree-item"><span class="ex-ico ico-desktop"></span>Desktop</div>
+          <div class="ex-tree-item"><span class="ex-ico ico-dl"></span>Downloads</div>
+          <div class="ex-tree-item"><span class="ex-ico ico-recent"></span>Recent Places</div>
+
+          <div class="ex-tree-head"><span class="tri">▾</span><span class="ex-ico ico-lib"></span>Libraries</div>
+          <div class="ex-tree-item"><span class="ex-ico ico-doc"></span>Documents</div>
+          <div class="ex-tree-item selected"><span class="ex-ico ico-folder-sm"></span>Projects</div>
+          <div class="ex-tree-item"><span class="ex-ico ico-music"></span>Music</div>
+          <div class="ex-tree-item"><span class="ex-ico ico-pic"></span>Pictures</div>
+
+          <div class="ex-tree-head"><span class="tri">▾</span><span class="ex-ico ico-comp"></span>Computer</div>
+          <div class="ex-tree-item"><span class="ex-ico ico-hdd"></span>Local Disk (C:)</div>
+
+          <div class="ex-tree-head"><span class="tri">▸</span><span class="ex-ico ico-net"></span>Network</div>
+        </div>
+      </div>
+      <div class="ex-content">
+        <div class="ex-grouphead">Featured (5)</div>
+        <div class="ex-items" id="project-items"></div>
+      </div>
+    </div>
+    <div class="ex-details">
+      <div class="ex-det-ico"></div>
+      <div class="ex-det-text">
+        <div><b id="proj-det-name">5 items</b></div>
+        <div id="proj-det-sub" class="ex-det-sub">Select a project and press Enter or double-click to open it.</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- ---------- PROJECT DETAIL ---------- -->
+<template id="tpl-project-detail">
+  <div class="pd-page">
+    <div class="pd-head">
+      <div class="pd-icon"></div>
+      <div>
+        <h1 class="pd-title"></h1>
+        <div class="pd-sub"></div>
+      </div>
+    </div>
+    <div class="pd-body"></div>
+  </div>
+</template>
+
+<!-- ---------- SKILLS (Control Panel grid) ---------- -->
+<template id="tpl-skills">
+  <div class="cp-page">
+    <div class="cp-addressbar">
+      <div class="cp-back">◀</div><div class="cp-fwd">▶</div>
+      <div class="cp-crumbs"><span>Control Panel</span> ▸ <b>All Skills</b></div>
+      <div class="cp-searchbox"><input placeholder="Search Control Panel" type="text"></div>
+    </div>
+    <div class="cp-main cp-main-full">
+      <h1 class="cp-h1">Adjust your developer's settings</h1>
+      <div class="cp-viewby">View by: <a href="#" data-noop>Category ▾</a></div>
+      <div class="skill-grid" id="skill-grid"></div>
+
+      <h2 class="cp-h2">Proficiency</h2>
+      <div class="bars" id="skill-bars"></div>
+    </div>
+  </div>
+</template>
+
+<!-- ---------- RESUME / EXPERIENCE ---------- -->
+<template id="tpl-resume">
+  <div class="doc-page">
+    <div class="doc-toolbar">
+      <span class="doc-tb">File</span><span class="doc-tb">Edit</span><span class="doc-tb">View</span>
+      <span class="doc-tb">Insert</span><span class="doc-tb">Format</span><span class="doc-tb">Help</span>
+      <span class="doc-tb-right"><button class="doc-btn" data-print>Print…</button></span>
+    </div>
+    <div class="doc-scroll">
+      <div class="doc-sheet">
+        <h1 class="doc-name">Gareth Chitate</h1>
+        <div class="doc-contact">Software Developer &nbsp;·&nbsp; chitategareth2@gmail.com &nbsp;·&nbsp; github.com/garethchitate</div>
+        <hr class="doc-rule">
+
+        <h2 class="doc-h2">Summary</h2>
+        <p>Full-stack developer with a bias toward shipping. Comfortable owning a feature from schema
+        design through to the last pixel, and equally happy debugging someone else's production incident
+        at 2am. Strongest in TypeScript, React and Python.</p>
+
+        <h2 class="doc-h2">Experience</h2>
+
+        <div class="doc-job">
+          <div class="doc-job-head"><b>Software Developer</b><span class="doc-date">2023 — Present</span></div>
+          <div class="doc-job-org">Independent / Contract</div>
+          <ul>
+            <li>Built and shipped web applications for small businesses, from requirements through deployment.</li>
+            <li>Designed REST and GraphQL APIs backed by PostgreSQL, with automated tests and CI.</li>
+            <li>Reduced page load times by ~60% on a client dashboard through code-splitting and query tuning.</li>
+          </ul>
+        </div>
+
+        <div class="doc-job">
+          <div class="doc-job-head"><b>Junior Developer</b><span class="doc-date">2022 — 2023</span></div>
+          <div class="doc-job-org">Software Team</div>
+          <ul>
+            <li>Maintained a React front end used daily by internal operations staff.</li>
+            <li>Wrote Python automation that replaced a manual reporting process taking 6 hours a week.</li>
+            <li>Participated in code review, pairing and on-call rotation.</li>
+          </ul>
+        </div>
+
+        <h2 class="doc-h2">Education</h2>
+        <div class="doc-job">
+          <div class="doc-job-head"><b>BSc, Computer Science</b><span class="doc-date">2018 — 2022</span></div>
+          <div class="doc-job-org">University</div>
+        </div>
+
+        <h2 class="doc-h2">Technical Skills</h2>
+        <p><b>Languages:</b> TypeScript, JavaScript, Python, SQL, HTML, CSS<br>
+           <b>Frameworks:</b> React, Next.js, Node/Express, FastAPI, Django<br>
+           <b>Data:</b> PostgreSQL, MongoDB, Redis<br>
+           <b>Tooling:</b> Git, Docker, GitHub Actions, Linux, AWS basics</p>
+
+        <h2 class="doc-h2">Interests</h2>
+        <p>Retro computing UI (as you may have noticed), mechanical keyboards, and reading post-mortems.</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- ---------- CONTACT (Windows Live Mail style) ---------- -->
+<template id="tpl-contact">
+  <div class="mail-page">
+    <div class="mail-toolbar">
+      <button class="mail-send" id="mail-send"><span class="mail-send-ico"></span>Send</button>
+      <span class="ex-tb-sep"></span>
+      <span class="ex-tb-item">Save draft</span>
+      <span class="ex-tb-item">Attach</span>
+      <span class="ex-tb-item">Check names</span>
+      <span class="ex-tb-item">Priority <b>▾</b></span>
+    </div>
+    <div class="mail-fields">
+      <div class="mail-row"><label>To:</label><div class="mail-input readonly">Gareth Chitate &lt;chitategareth2@gmail.com&gt;</div></div>
+      <div class="mail-row"><label>From:</label><input type="email" id="mail-from" placeholder="your.name@example.com"></div>
+      <div class="mail-row"><label>Subject:</label><input type="text" id="mail-subject" placeholder="What's this about?"></div>
+    </div>
+    <div class="mail-format">
+      <select><option>Calibri</option><option>Segoe UI</option><option>Tahoma</option></select>
+      <select><option>11</option><option>12</option><option>14</option></select>
+      <button class="fmt-b"><b>B</b></button><button class="fmt-i"><i>I</i></button><button class="fmt-u"><u>U</u></button>
+      <span class="fmt-sep"></span>
+      <button>≡</button><button>⋮≡</button>
+    </div>
+    <textarea id="mail-body" class="mail-body" placeholder="Type your message here…"></textarea>
+    <div class="mail-status" id="mail-status">Ready</div>
+  </div>
+</template>
+
+<!-- ---------- NOTEPAD ---------- -->
+<template id="tpl-notepad">
+  <div class="np-page">
+    <div class="np-menu">
+      <span>File</span><span>Edit</span><span>Format</span><span>View</span><span>Help</span>
+    </div>
+    <textarea class="np-area" spellcheck="false">Untitled - Notepad
+
+Thanks for stopping by.
+
+This whole desktop is one HTML file, one CSS file and one JS file.
+Everything you see — the Aero glass, the Start menu, the window
+dragging, the snapping, the taskbar clock — is hand-written.
+
+Feel free to type in here. It works.
+
+— Gareth
+</textarea>
+  </div>
+</template>
+
+<!-- ---------- COMPUTER ---------- -->
+<template id="tpl-computer">
+  <div class="ex-page">
+    <div class="ex-addressbar">
+      <div class="ex-nav-btns"><button class="ex-back">◀</button><button class="ex-fwd">▶</button></div>
+      <div class="ex-crumbbar"><span class="ex-crumb-ico"></span><span>Computer</span><span class="ex-sep">▸</span></div>
+      <div class="ex-searchbox"><input type="text" placeholder="Search Computer"></div>
+    </div>
+    <div class="ex-toolbar">
+      <span class="ex-tb-item">Organize <b>▾</b></span>
+      <span class="ex-tb-sep"></span>
+      <span class="ex-tb-item">System properties</span>
+      <span class="ex-tb-item">Uninstall or change a program</span>
+      <span class="ex-tb-item">Map network drive</span>
+    </div>
+    <div class="ex-split">
+      <div class="ex-nav">
+        <div class="ex-tree">
+          <div class="ex-tree-head"><span class="tri">▾</span><span class="ex-ico ico-fav"></span>Favorites</div>
+          <div class="ex-tree-item"><span class="ex-ico ico-desktop"></span>Desktop</div>
+          <div class="ex-tree-head"><span class="tri">▾</span><span class="ex-ico ico-comp"></span>Computer</div>
+          <div class="ex-tree-item selected"><span class="ex-ico ico-hdd"></span>Local Disk (C:)</div>
+        </div>
+      </div>
+      <div class="ex-content">
+        <div class="ex-grouphead">Hard Disk Drives (2)</div>
+        <div class="drive-list">
+          <div class="drive">
+            <div class="drive-ico"></div>
+            <div class="drive-info">
+              <div class="drive-name">Local Disk (C:)</div>
+              <div class="drive-bar"><div class="drive-fill" style="width:78%"></div></div>
+              <div class="drive-free">21.4 GB free of 97.6 GB</div>
+            </div>
+          </div>
+          <div class="drive">
+            <div class="drive-ico"></div>
+            <div class="drive-info">
+              <div class="drive-name">Projects (D:)</div>
+              <div class="drive-bar"><div class="drive-fill blue" style="width:41%"></div></div>
+              <div class="drive-free">118 GB free of 200 GB</div>
+            </div>
+          </div>
+        </div>
+        <div class="ex-grouphead">Devices with Removable Storage (1)</div>
+        <div class="drive-list">
+          <div class="drive">
+            <div class="drive-ico usb"></div>
+            <div class="drive-info">
+              <div class="drive-name">DVD RW Drive (E:)</div>
+              <div class="drive-free" style="margin-top:6px">No disc inserted</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ex-details">
+      <div class="ex-det-ico"></div>
+      <div class="ex-det-text">
+        <div><b>GARETH-PC</b></div>
+        <div class="ex-det-sub">Workgroup: PORTFOLIO &nbsp;·&nbsp; Memory: 8.00 GB &nbsp;·&nbsp; Processor: Intel Core i5</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- ---------- RECYCLE BIN ---------- -->
+<template id="tpl-recycle">
+  <div class="ex-page">
+    <div class="ex-addressbar">
+      <div class="ex-nav-btns"><button class="ex-back">◀</button><button class="ex-fwd">▶</button></div>
+      <div class="ex-crumbbar"><span class="ex-crumb-ico"></span><span>Recycle Bin</span><span class="ex-sep">▸</span></div>
+      <div class="ex-searchbox"><input type="text" placeholder="Search Recycle Bin"></div>
+    </div>
+    <div class="ex-toolbar">
+      <span class="ex-tb-item">Organize <b>▾</b></span>
+      <span class="ex-tb-sep"></span>
+      <span class="ex-tb-item">Empty the Recycle Bin</span>
+      <span class="ex-tb-item">Restore all items</span>
+    </div>
+    <div class="ex-split">
+      <div class="ex-nav"><div class="ex-tree">
+        <div class="ex-tree-head"><span class="tri">▾</span><span class="ex-ico ico-fav"></span>Favorites</div>
+        <div class="ex-tree-item"><span class="ex-ico ico-desktop"></span>Desktop</div>
+      </div></div>
+      <div class="ex-content">
+        <div class="ex-grouphead">Deleted Items (3)</div>
+        <div class="ex-items">
+          <div class="ex-item"><div class="ex-item-ico ico-file"></div><div class="ex-item-label">jquery-spaghetti.js</div></div>
+          <div class="ex-item"><div class="ex-item-ico ico-file"></div><div class="ex-item-label">final_FINAL_v3.psd</div></div>
+          <div class="ex-item"><div class="ex-item-ico ico-file"></div><div class="ex-item-label">it-works-on-my-machine.txt</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="ex-details">
+      <div class="ex-det-ico"></div>
+      <div class="ex-det-text"><div><b>3 items</b></div><div class="ex-det-sub">Nothing important. Probably.</div></div>
+    </div>
+  </div>
+</template>
+
+<!-- ---------- COMMAND PROMPT ---------- -->
+<template id="tpl-cmd">
+  <div class="cmd-page">
+    <div class="cmd-out" id="cmd-out">Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+Type <b>help</b> for a list of commands.
+</div>
+    <div class="cmd-line">
+      <span class="cmd-prompt">C:\Users\Gareth&gt;</span><input class="cmd-in" id="cmd-in" spellcheck="false" autocomplete="off">
+    </div>
+  </div>
+</template>
+
+<!-- ---------- GENERIC DIALOG ---------- -->
+<template id="tpl-dialog">
+  <div class="dlg-page">
+    <div class="dlg-body">
+      <div class="dlg-ico"></div>
+      <div class="dlg-text"></div>
+    </div>
+    <div class="dlg-buttons"></div>
+  </div>
+</template>
+
+<script src="js/script.js"></script>
+</body>
+</html>
